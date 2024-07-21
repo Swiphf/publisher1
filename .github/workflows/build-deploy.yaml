@@ -37,7 +37,7 @@ jobs:
         tags: |
           ${{ secrets.DOCKER_USERNAME }}/${{ env.APP }}:${{ env.LATEST_TAG }}
           ${{ secrets.DOCKER_USERNAME }}/${{ env.APP }}:${{ env.NUMBERED_TAG }}
-        
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
