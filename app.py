@@ -40,7 +40,7 @@ def process_request():
         MessageBody=json.dumps(data)
     )
 
-    return jsonify({"message": "Message sent to SQS", "message_id": response['MessageId']}), 200
+    return jsonify({"message": "Message sent to SQS", "message_id": response['MessageId'], "response": response}), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
