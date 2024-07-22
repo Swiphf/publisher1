@@ -4,14 +4,14 @@ import json
 
 app = Flask(__name__)
 
-# Initialize SQS client
-sqs = boto3.client('sqs', region_name='us-east-1', endpoint_url='http://localhost:4566')
-
-# Your SQS queue URL
-QUEUE_URL = 'http://localhost:4566/000000000000/my-queue'
-
-# Dummy token for validation
+AWS_ACCESS_KEY = os.getenv('AWS_ACCESS_KEY', 'mock_access_key')
+AWS_SECRET_KEY = os.getenv('AWS_SECRET_KEY', 'mock_secret_key')
+REGION_NAME = os.getenv('REGION_NAME', 'eu-west-1')
+ENDPOINTS_URL = os.getenv('ENDPOINTS_URL', 'http://localstack:4566')
+QUEUE_URL = os.getenv('QUEUE_URL', 'http://localhost:4566/000000000000/my-queue')
 VALID_TOKEN = "$DJISA<$#45ex3RtYr"
+
+sqs = boto3.client('sqs', region_name=REGION_NAME, endpoint_url=ENDPOINTS_URL, aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_KEY)
 
 def validate_token(token):
     return token == VALID_TOKEN
