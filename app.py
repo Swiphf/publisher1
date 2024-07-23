@@ -29,9 +29,10 @@ def process_request():
     token = content.get("token")
     data = content.get("data")
 
+    # token validation
     if not validate_token(token):
         return jsonify({"error": "Invalid token"}), 403
-
+    # payload validation
     if not validate_payload(data):
         return jsonify({"error": "Invalid payload"}), 400
 
